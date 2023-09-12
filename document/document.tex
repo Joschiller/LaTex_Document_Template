@@ -45,17 +45,17 @@
 	\newpage
 	\startcontents
 	%%%%% CONTENT OVERVIEW SECTIONS %%%%%
-	\addOverviewSection{Inhaltsverzeichnis}{\printcontents{}{1}{}}									% TODO: remove this line, if not needed
-	\addOverviewSection{Abbildungsverzeichnis}{ 																		% TODO: remove the next four lines, if not needed
+	\addOverviewSection{Inhaltsverzeichnis}{\printcontents{}{1}{}}                  % TODO: remove this line, if not needed
+	\addOverviewSection{Abbildungsverzeichnis}{                                     % TODO: remove the next four lines, if not needed
 		\renewcommand{\listfigurename}{}
 		\listoffigures
 	}
-	\addOverviewSection{Abkürzungsverzeichnis}{\input{sections/abbreviations.tex}} 	% TODO: remove this line, if not needed
-	\addOverviewSection{Tabellenverzeichnis}{																				% TODO: remove the next four lines, if not needed
+	\addOverviewSection{Abkürzungsverzeichnis}{\input{sections/abbreviations.tex}}  % TODO: remove this line, if not needed
+	\addOverviewSection{Tabellenverzeichnis}{                                       % TODO: remove the next four lines, if not needed
 		\renewcommand{\listtablename}{}
 		\listoftables
 	}
-	\addOverviewSection{Vorwort}{\input{sections/foreword.tex}}											% TODO: remove this line, if not needed
+	\addOverviewSection{Vorwort}{\input{sections/foreword.tex}}                     % TODO: remove this line, if not needed
 	\setcounter{romanPageCounter}{\arabic{page}} % save roman page counter
 	\pagenumbering{arabic}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
