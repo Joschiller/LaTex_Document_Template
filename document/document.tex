@@ -1,0 +1,85 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%% FILE CONFIGURATION %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper]{scrartcl}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%      PACKAGES      %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[]{graphicx}                                                      % figures
+\usepackage[]{listings}                                                      % code
+\usepackage[backend=biber, style=ieee, natbib=true, hyperref=true]{biblatex} % references
+\usepackage{titletoc}                                                        % toc
+\usepackage{geometry}                                                        % styling
+\usepackage{pdfpages}                                                        % pdf import
+\usepackage{float}                                                           % force image position
+\usepackage{enumitem}                                                        % enumeration lists with letters
+\usepackage{changes}                                                         % further text options
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%   CONFIGURATION    %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addbibresource{bibliography.bib}
+\geometry{a4paper, top=2cm, bottom=2cm, left=2cm, right=2cm}
+\newcommand{\addOverviewSection}[2]{
+	\markboth{}{} % clear old header
+	\section*{#1}
+	\addcontentsline{toc}{section}{\protect\numberline{}#1} % add to toc
+	#2
+	\newpage
+}
+\newcounter{romanPageCounter}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%      CONTENT       %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%       HEADER       %%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\pagenumbering{Roman}
+	%%%%% TITLE PAGE %%%%%
+	\include{sections/title.tex}
+	\newpage
+	\startcontents
+	%%%%% CONTENT OVERVIEW SECTIONS %%%%%
+	\addOverviewSection{Inhaltsverzeichnis}{\printcontents{}{1}{}}									% TODO: remove this line, if not needed
+	\addOverviewSection{Abbildungsverzeichnis}{ 																		% TODO: remove the next four lines, if not needed
+		\renewcommand{\listfigurename}{}
+		\listoffigures
+	}
+	\addOverviewSection{Abkürzungsverzeichnis}{\input{sections/abbreviations.tex}} 	% TODO: remove this line, if not needed
+	\addOverviewSection{Tabellenverzeichnis}{																				% TODO: remove the next four lines, if not needed
+		\renewcommand{\listtablename}{}
+		\listoftables
+	}
+	\addOverviewSection{Vorwort}{\input{sections/foreword.tex}}											% TODO: remove this line, if not needed
+	\setcounter{romanPageCounter}{\arabic{page}} % save roman page counter
+	\pagenumbering{arabic}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%      CONTENT       %%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\input{sections/content.tex}
+	% TODO: remove all following lines except "\stopcontents" and "\end{document}" if no appendix is needed
+	\newpage
+	\markboth{}{} % clear old header
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%      APPENDIX      %%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\pagenumbering{Roman}
+	\setcounter{page}{\theromanPageCounter}  % restore roman page counter
+	%%%%% REFERENCES %%%%%
+	\addOverviewSection{Literaturverzeichnis}{\printbibliography[heading=none]}
+	%%%%% APPENDIX %%%%%
+	\addOverviewSection{Anhang}{
+		\startcontents[Anhang]
+		\printcontents[Anhang]{}{2}{}
+	}
+	\markboth{}{} % clear old header
+	\pagenumbering{arabic}
+	\stopcontents
+	\input{sections/appendix.tex}
+	\stopcontents[Anhang]
+\end{document}

@@ -1,0 +1,16 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%   CONFIGURATION    %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\startAppendixSection}[1]{
+	\subsection*{#1}
+	\addcontentsline{toc}{subsection}{\protect\numberline{}#1} % add to toc
+}
+
+\newcommand{\includeFormattedPdf}[2]{
+	\includepdf[scale=0.9,pages={#2},pagecommand={}]{#1}
+}
+
+\startAppendixSection{A ... Title of the Section ...}
+\input{sections/appendixSections/AppendixA.tex}
+\newpage
+% TODO: insert further appendix sections here by duplicating the three above lines

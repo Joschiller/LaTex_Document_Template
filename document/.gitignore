@@ -1,0 +1,10 @@
+# Ignore everything
+*
+
+# Except actual content
+!*.gitignore
+!assets/**/*
+!assets/*
+!*.tex
+!*.bib
+!*/
