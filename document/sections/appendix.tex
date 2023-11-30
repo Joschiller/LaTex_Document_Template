@@ -6,11 +6,28 @@
 	\addcontentsline{toc}{subsection}{\protect\numberline{}{{#1} {#2}}} % add to toc
 }
 
+% Use this command to include a pdf file within an appendix:
+% \includeFormattedPdf{Path to PDF.pdf}{startPage-endPage}
+% to include all pages use "-"
 \newcommand{\includeFormattedPdf}[2]{
-	\includepdf[scale=0.9,pages={#2},pagecommand={}]{#1}
+	\includepdf[pages={#2},pagecommand={},width=0.75\textheight]{#1}
+}
+
+% Use this command to include a single pdf page as an appendix:
+% \includeFormattedPdfAppendixWithSinglePage{Appendix Symbol}{Appendix Title}{Path to PDF.pdf}
+\newcommand{\includeFormattedPdfAppendixWithSinglePage}[3]{
+	\includepdf[pages=1,pagecommand={\startAppendixSection{#1}{#2}},width=0.75\textheight]{#3}
+}
+
+% Use this command to include a whole pdf file as an appendix:
+% \includeFormattedPdfAppendix{Appendix Symbol}{Appendix Title}{Path to PDF.pdf}
+\newcommand{\includeFormattedPdfAppendix}[3]{
+	\includepdf[pages=1,pagecommand={\startAppendixSection{#1}{#2}},width=0.75\textheight]{#3}
+	\includepdf[pages=2-,pagecommand={},width=0.75\textheight]{#3}
 }
 
 \startAppendixSection{A}{... Title of the Section ...}
 \input{sections/appendixSections/AppendixA.tex}
 \newpage
 % TODO: insert further appendix sections here by duplicating the three above lines
+% NOTE: To insert an appendix that solely includes a pdf, do not use all three of the above lines but instead utilize \includeFormattedPdfAppendixWithSinglePage or \includeFormattedPdfAppendix
