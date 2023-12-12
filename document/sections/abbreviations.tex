@@ -1,7 +1,7 @@
 \newcommand{\defAbbreviation}[2]{
-	\textit{#1} & #2 \label{abbrev:#1} \\
+	\defWithLabel{#1}{abbrev} & #2 \\
 }
-\newcommand{\refAbbreviation}[1]{\hyperref[abbrev:#1]{\textit{#1}}}
+\newcommand{\refAbbreviation}[1]{\refWithLabel{#1}{abbrev}}
 
 \begin{tabular}{ll}
 	\defAbbreviation{...}{...}
