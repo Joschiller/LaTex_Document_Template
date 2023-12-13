@@ -39,7 +39,7 @@
 % Defines a reference point for a specific category.
 % E.g., \defWithLabel{My first note}{note} will be displayed as \textit{My first note} and get the label "note:My first note".
 % It is advised to define custom methods to wrap the category. E.g.: \defNote{#1}[1]{\defWithLabel{#1}{note}}
-\newcommand{\defWithLabel}[2]{\textit{#1} \label{#2:#1}}
+\newcommand{\defWithLabel}[2]{\textit{#1}\label{#2:#1}}
 % References a previously defined reference point for a specific category.
 % E.g., \refWithLabel{My first note}{note} will be displayed as \textit{My first note} that links to the label "note:My first note".
 % It is advised to define custom methods to wrap the category. E.g.: \refNote{#1}[1]{\refWithLabel{#1}{note}}
